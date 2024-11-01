@@ -1,4 +1,5 @@
 "use client";
+import { Skeleton } from "@/app/components";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -62,7 +63,7 @@ const NavLinks = () => {
 const AuthStatus = () => {
   const { status, data: session } = useSession();
 
-  if (status === "loading") return null;
+  if (status === "loading") return <Skeleton />;
 
   if (status === "unauthenticated")
     return (
@@ -87,7 +88,7 @@ const AuthStatus = () => {
           <DropdownMenu.Label>
             <Text size="2">{session!.user?.name}</Text>
           </DropdownMenu.Label>
-          <DropdownMenu.Item className="border-none">
+          <DropdownMenu.Item>
             <Link href="/api/auth/signout">Log out</Link>
           </DropdownMenu.Item>
         </DropdownMenu.Content>
