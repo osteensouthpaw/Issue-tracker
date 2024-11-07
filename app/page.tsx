@@ -6,13 +6,15 @@ export default function Home({
 }: {
   searchParams: { page: string };
 }) {
+  console.log(searchParams.page, parseInt(searchParams.page));
+
   return (
     <div>
       <Text>Hello World</Text>
       <Pagination
-        currentPage={10}
+        currentPage={parseInt(searchParams.page)}
         itemCount={100}
-        pageSize={parseInt(searchParams.page)}
+        pageSize={10}
       />
     </div>
   );
